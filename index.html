@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Sentiment Analyzer</title>
+    <style>
+        body { font-family: Arial; background-color: #f9f9f9; padding: 20px; }
+        .container { max-width: 600px; margin: auto; }
+        h2 { color: #333; }
+        form { margin-bottom: 20px; }
+        input[type="text"] { width: 80%; padding: 8px; }
+        input[type="submit"] { padding: 8px 12px; }
+        .result { padding: 10px; margin: 5px 0; border-left: 5px solid; }
+        .Positive { border-color: green; }
+        .Negative { border-color: red; }
+        .Neutral { border-color: gray; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Stock Sentiment Analyzer</h2>
+        <form method="POST">
+            <input type="text" name="ticker" placeholder="Enter Stock Ticker (e.g., AAPL)" required>
+            <input type="submit" value="Analyze">
+        </form>
+        {% for s in sentiments %}
+            <div class="result {{ s.sentiment }}">
+                <strong>{{ s.sentiment }}</strong> (Polarity: {{ s.polarity }}): {{ s.headline }}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
